@@ -35,18 +35,17 @@ function plugin-load {
   done
 }
 
-repos=(
+plugins=(
   zdharma-continuum/fast-syntax-highlighting
   zsh-users/zsh-autosuggestions.git
   Aloxaf/fzf-tab.git
 )
-plugin-load $repos
+plugin-load $plugins
 
 function tool-load {
-  local tools=("$@")
-  local missing_tools=()
+  local tool missing_tools=()
   
-  for tool in "${tools[@]}"; do
+  for tool in $@; do
     if ! command -v $tool &> /dev/null; then
       echo "⚠️ $tool is not installed."
       missing_tools+=($tool)
@@ -77,7 +76,8 @@ tools=(
   eza
   zoxide
 )
-tool-load "${tools[@]}"
+tool-load $tools
+
 
 source <(fzf --zsh)
 
