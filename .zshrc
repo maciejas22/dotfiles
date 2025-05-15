@@ -6,7 +6,9 @@ SAVEHIST=1000
 unsetopt autocd beep
 bindkey -v
 
-zstyle :compinstall filename '/Users/maciejas22/.zshrc'
+exec PROMPT='%m:%~ %# '
+
+zstyle :compinstall filename '~/.zshrc'
 
 autoload -Uz compinit
 compinit
