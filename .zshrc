@@ -71,10 +71,15 @@ function tool-load {
   fi
 }
 
+export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden --follow'
+
 tools=(
+  bat
+  fd
   fzf
   eza
   zoxide
+  nvr
 )
 tool-load $tools
 
