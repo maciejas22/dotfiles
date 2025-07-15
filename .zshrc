@@ -1,5 +1,7 @@
 # zmodload zsh/zprof
 
+[ -f ~/.zsh_env ] && source ~/.zsh_env
+
 HISTFILE=~/.zshistory
 HISTSIZE=1000
 SAVEHIST=1000
@@ -79,7 +81,6 @@ tools=(
   fzf
   eza
   zoxide
-  nvr
 )
 tool-load $tools
 
