@@ -1,0 +1,16 @@
+yabai -m config layout bsp
+
+yabai -m config top_padding    8
+yabai -m config bottom_padding 8
+yabai -m config left_padding   8
+yabai -m config right_padding  8
+yabai -m config window_gap     8
+
+yabai -m config auto_balance on
+
+yabai -m rule --add app="^System Information$" manage=off
+yabai -m rule --add app="^System Settings$" title=".*" manage=off
+yabai -m rule --add title='Preferences$' manage=off
+yabai -m rule --add title='Settings$' manage=off
+yabai -m rule --add app="^Calculator$" manage=off
+yabai -m rule --add app="^Activity Monitor$" manage=off

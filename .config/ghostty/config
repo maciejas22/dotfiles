@@ -1,0 +1,10 @@
+keybind = performable:ctrl+h=goto_split:left
+keybind = performable:ctrl+j=goto_split:down
+keybind = performable:ctrl+k=goto_split:up
+keybind = performable:ctrl+l=goto_split:right
+
+keybind = performable:ctrl+alt+h=resize_split:left,40
+keybind = performable:ctrl+alt+j=resize_split:down,40
+keybind = performable:ctrl+alt+k=resize_split:up,40
+keybind = performable:ctrl+alt+l=resize_split:right,40
+
