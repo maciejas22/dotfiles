@@ -12,6 +12,7 @@ config.font_size = 12
 config.color_scheme = "Tokyo Night"
 
 config.hide_tab_bar_if_only_one_tab = true
+config.window_close_confirmation = "AlwaysPrompt"
 
 config.leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1000 }
 config.unix_domains = {
