@@ -44,46 +44,7 @@ plugins=(
 )
 plugin-load $plugins
 
-function tool-load {
-  local tool missing_tools=()
-  
-  for tool in $@; do
-    if ! command -v $tool &> /dev/null; then
-      echo "⚠️ $tool is not installed."
-      missing_tools+=($tool)
-    fi
-  done
-  
-  if (( ${#missing_tools[@]} > 0 )); then
-    echo "Installing missing tools with Homebrew..."
-    
-    if ! command -v brew &> /dev/null; then
-      echo "Homebrew is not installed." 
-      return 1
-    fi
-    
-    for tool in "${missing_tools[@]}"; do
-      echo "Installing $tool..."
-      brew install $tool
-      
-      if ! command -v $tool &> /dev/null; then
-        echo "Failed to install $tool."
-      fi
-    done
-  fi
-}
-
 export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden --follow'
-
-tools=(
-  bat
-  fd
-  fzf
-  eza
-  zoxide
-)
-tool-load $tools
-
 
 source <(fzf --zsh)
 
