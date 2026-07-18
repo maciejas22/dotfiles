@@ -11,11 +11,29 @@ bindkey -v
 export PROMPT='%m:%~ %# '
 
 zstyle :compinstall filename '~/.zshrc'
-
 autoload -Uz compinit
 compinit
 
 ZPLUGINSDIR=${ZPLUGINSDIR:-$HOME/.config/zsh/plugins}
+
+function plugin-compile {
+  ZPLUGINDIR=${ZPLUGINDIR:-$HOME/.config/zsh/plugins}
+  autoload -U zrecompile
+  local f
+  for f in $ZPLUGINDIR/**/*.zsh{,-theme}(N); do
+    zrecompile -pq "$f"
+  done
+}
+
+function plugin-update {
+  ZPLUGINDIR=${ZPLUGINDIR:-$HOME/.config/zsh/plugins}
+  for d in $ZPLUGINDIR/*/.git(/); do
+    echo "Updating ${d:h:t}..."
+    command git -C "${d:h}" pull --ff --recurse-submodules --depth 1 --rebase --autostash
+  done
+  plugin-compile
+}
+
 function plugin-load {
   local plugin repo commitsha plugdir initfile initfiles=()
   : ${ZPLUGINDIR:=${ZDOTDIR:-~/.config/zsh}/plugins}
@@ -55,7 +73,6 @@ plugins=(
 plugin-load $plugins
 
 export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden --follow'
-
 source <(fzf --zsh)
 
 alias ls="eza --icons=always"
