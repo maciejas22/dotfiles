@@ -1,5 +1,24 @@
 {
   "$schema": "https://opencode.ai/config.json",
+  "default_agent": "openagent",
+  "model": "openai/gpt-5.6-luna",
+  "provider": {
+    "openai": {
+      "models": {
+        "gpt-5.6-luna": {
+          "reasoningEffort": "xhigh"
+        }
+      }
+    }
+  },
+  "agent": {
+    "build": {
+      "disable": true
+    },
+    "plan": {
+      "disable": true
+    }
+  },
   "lsp": true,
   "formatter": true,
   "permission": {
@@ -8,6 +27,11 @@
     "glob": "allow",
     "lsp": "allow",
     "skill": "allow",
-    "question": "allow"
+    "question": "allow",
+
+    "external_directory": {
+      "~/.config/opencode/**": "allow",
+      "*": "ask"
+    }
   }
 }
